@@ -25,6 +25,7 @@ import com.waz.api.KindOfTrackingEvent;
 import com.waz.api.TrackingEvent;
 import com.waz.api.TrackingEventsHandler;
 import com.waz.service.call.AvsMetrics;
+import com.waz.service.push.PushTrackingService;
 import com.waz.zclient.controllers.tracking.ITrackingController;
 import com.waz.zclient.controllers.tracking.events.calling.EndedCallAVSMetricsEvent;
 import com.waz.zclient.core.controllers.tracking.attributes.CompletedMediaType;
@@ -51,6 +52,11 @@ public class AppTrackingEventsHandler implements TrackingEventsHandler {
 
     public AppTrackingEventsHandler(ITrackingController trackingController) {
         this.trackingController = trackingController;
+    }
+
+    @Override
+    public void onNotificationsEvent(PushTrackingService.NotificationsEvent ev) {
+
     }
 
     @Override
@@ -129,6 +135,8 @@ public class AppTrackingEventsHandler implements TrackingEventsHandler {
                 trackingController.tagEvent(new FailedFileDownloadEvent(assetMimeType));
                 break;
         }
+
+
     }
 
     @Override
